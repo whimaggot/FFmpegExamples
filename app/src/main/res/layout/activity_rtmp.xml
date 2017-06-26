@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"/>
     <Button
         android:text="play"
+        android:visibility="gone"
         android:id="@+id/btn_state"
         android:onClick="play"
         android:layout_width="wrap_content"

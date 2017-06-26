@@ -85,6 +85,7 @@ public class FFmpegRtmpActivity extends AppCompatActivity {
             }
         }).start();
         btnState.setText("pause");
+        btnState.setVisibility(View.VISIBLE);
 
     }
 
