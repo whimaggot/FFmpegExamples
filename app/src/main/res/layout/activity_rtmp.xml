@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/et_input"
+        android:text="199.mp4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <EditText
+        android:text="rtmp://192.168.72.156:1935/rtmplive/room"
+        android:id="@+id/tv_output"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <Button
+        android:text="rtmp"
+        android:onClick="onRtmp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="play"
+        android:id="@+id/btn_state"
+        android:onClick="play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
