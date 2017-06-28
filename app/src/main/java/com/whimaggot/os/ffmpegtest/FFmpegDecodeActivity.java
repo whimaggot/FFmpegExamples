@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.whimaggot.os.ffmpegtest.utils.ToastHelper;
 
 import static android.R.attr.targetSdkVersion;
 
@@ -29,21 +29,22 @@ public class FFmpegDecodeActivity extends AppCompatActivity{
         etOutput = (EditText) findViewById(R.id.tv_output);
     }
 
+    /**
+     * 将一个视频转换成YUV420文件，体积会很大
+     * */
     public void onDecode(View pView){
-        String folderurl=Environment.getExternalStorageDirectory().getPath();
+        String folderUrl=Environment.getExternalStorageDirectory().getPath();
 
         String input=etInput.getText().toString();
-        String inputurl=folderurl+"/"+input;
+        String inputUrl=folderUrl+"/"+input;
 
-        String outputurl=inputurl.substring(0,inputurl.length()-3)+"yuv";
-        etOutput.setText(outputurl);
-        Log.i("ffmpeg-decode",inputurl);
-        Log.i("ffmpeg-decode",outputurl);
-        int result = decode(inputurl,outputurl);
+        String outputUrl=inputUrl.substring(0,inputUrl.length()-3)+"yuv";
+        etOutput.setText(outputUrl);
+        int result = decode(inputUrl,outputUrl);
         if(result!=0){
-            Toast.makeText(this,"转码失败",Toast.LENGTH_SHORT).show();
+            ToastHelper.tips(getApplicationContext(),"转码失败");
         }else{
-            Toast.makeText(this,"转码成功", Toast.LENGTH_SHORT).show();
+            ToastHelper.tips(getApplicationContext(),"转码成功");
         }
     }
 

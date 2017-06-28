@@ -103,8 +103,8 @@ extern "C" jint Java_com_whimaggot_os_ffmpegtest_FFmpegDecodeActivity_decode(JNI
                 sws_scale(img_convert_context, (const uint8_t *const *) pFrame->data, pFrame->linesize, 0, pCodecContext->height, pFrameYuv->data, pFrameYuv->linesize);
                 y_size = pCodecContext->width*pCodecContext->height;
                 fwrite(pFrame->data[0],1,y_size,fp_yuv);//Y
-                fwrite(pFrame->data[1],1,y_size,fp_yuv);//U
-                fwrite(pFrame->data[2],1,y_size,fp_yuv);//V
+                fwrite(pFrame->data[1],1,y_size/4,fp_yuv);//U
+                fwrite(pFrame->data[2],1,y_size/4,fp_yuv);//V
 
                 char pict_type_str[10]={0};
                 switch(pFrame->pict_type){
@@ -139,8 +139,8 @@ extern "C" jint Java_com_whimaggot_os_ffmpegtest_FFmpegDecodeActivity_decode(JNI
         sws_scale(img_convert_context, (const uint8_t *const *) pFrame->data, pFrame->linesize, 0, pCodecContext->height, pFrameYuv->data, pFrameYuv->linesize);
         int y_size= pCodecContext->width*pCodecContext->height;
         fwrite(pFrame->data[0],1,y_size,fp_yuv);//Y
-        fwrite(pFrame->data[1],1,y_size,fp_yuv);//U
-        fwrite(pFrame->data[2],1,y_size,fp_yuv);//V
+        fwrite(pFrame->data[1],1,y_size/4,fp_yuv);//U
+        fwrite(pFrame->data[2],1,y_size/4,fp_yuv);//V
         char pict_type_str[10]={0};
         switch(pFrame->pict_type){
             case AV_PICTURE_TYPE_I:

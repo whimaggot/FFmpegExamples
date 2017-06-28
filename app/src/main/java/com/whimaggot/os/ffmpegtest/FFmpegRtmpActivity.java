@@ -8,10 +8,11 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.whimaggot.os.ffmpegtest.utils.ToastHelper;
 
 import static android.R.attr.targetSdkVersion;
 
@@ -71,17 +72,21 @@ public class FFmpegRtmpActivity extends AppCompatActivity {
 
         return result;
     }
+
+    /**
+     * 推流，两个Edittext控制分别是输入源跟推流至的地址
+     * */
     public void onRtmp(View pView){
-        String folderurl= Environment.getExternalStorageDirectory().getPath();
+        String folderUrl= Environment.getExternalStorageDirectory().getPath();
 
         String input=etInput.getText().toString();
-        final String inputurl=folderurl+"/"+input;
+        final String inputUrl=folderUrl+"/"+input;
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.e("FFmpegDecodeActivity","开始播放");
-                rtmp(inputurl,etOutput.getText().toString());
-                Log.e("FFmpegDecodeActivity","结束播放");
+                ToastHelper.tips(getApplicationContext(),"准备播放中");
+                rtmp(inputUrl,etOutput.getText().toString());
+                ToastHelper.tips(getApplicationContext(),"播放结束");
             }
         }).start();
         btnState.setText("pause");

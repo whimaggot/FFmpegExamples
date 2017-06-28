@@ -5,7 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.whimaggot.os.ffmpegtest.utils.ToastHelper;
 
 import java.io.File;
 
@@ -23,6 +24,10 @@ public class FFmpegCoreActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * 执行FFmpeg 命令
+     * */
     public void onCore(View pView){
         String[] command = etCommand.getText().toString().split(" ");
         int line = command.length;
@@ -34,15 +39,15 @@ public class FFmpegCoreActivity extends AppCompatActivity {
         String input = command[command.length-2];
         File inputFile = new File(input);
         if(inputFile==null || !inputFile.exists()){
-            Toast.makeText(FFmpegCoreActivity.this,"待文件不存在",Toast.LENGTH_SHORT).show();
+            ToastHelper.tips(getApplicationContext(),"待文件不存在");
             return;
         }
         int result = core(line, command);
 
         if(result<0){
-            Toast.makeText(FFmpegCoreActivity.this,"转码失败",Toast.LENGTH_SHORT).show();
+            ToastHelper.tips(getApplicationContext(),"转码失败");
         }else{
-            Toast.makeText(FFmpegCoreActivity.this,"转码成功",Toast.LENGTH_SHORT).show();
+            ToastHelper.tips(getApplicationContext(),"转码成功");
         }
     }
 

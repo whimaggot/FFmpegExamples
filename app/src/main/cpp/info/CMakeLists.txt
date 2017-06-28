@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.4.1)
 add_library(
     ffmpeg-info
     SHARED
-    ffmpeg_info.cpp)
+    ffmpeg_info.cpp
+    ffmpeg_tool.cpp
+    )
 
 
 

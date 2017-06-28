@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(FFmpegRtmpActivity.class);
     }
 
+    public void tool(View pView){
+        startActivity(FFmpegToolsActivity.class);
+    }
+
     public void core(View pView){
         startActivity(FFmpegCoreActivity.class);
     }
