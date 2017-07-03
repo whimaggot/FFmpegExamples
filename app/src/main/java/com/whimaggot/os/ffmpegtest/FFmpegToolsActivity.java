@@ -61,7 +61,7 @@ public class FFmpegToolsActivity extends AppCompatActivity {
     public void onYUV420Gray(View pView){
         String folderUrl= Environment.getExternalStorageDirectory().getPath();
         String inputUrl = folderUrl+"/"+etInput.getText().toString();
-        int ret= YUV420Gray(inputUrl,640,360,20);
+        int ret= yuv420Gray(inputUrl,640,360,20);
         if(ret==0){
             ToastHelper.tips(getApplicationContext(),"成功");
         }else{
@@ -72,7 +72,16 @@ public class FFmpegToolsActivity extends AppCompatActivity {
     public void onYUV420HalfY(View pView){
         String folderUrl= Environment.getExternalStorageDirectory().getPath();
         String inputUrl = folderUrl+"/"+etInput.getText().toString();
-        int ret= YUV420HalfY(inputUrl,640,360,20);
+        int ret= yuv420HalfY(inputUrl,640,360,20);
+        if(ret==0){
+            ToastHelper.tips(getApplicationContext(),"成功");
+        }else{
+            ToastHelper.tips(getApplicationContext(),"失败");
+        }
+    }
+
+    public void onYUV420GrayBar(View pView){
+        int ret= yuv420GrayBar(640,360,0,255,10,"/sdcard/output_420_gray_bar.yuv");
         if(ret==0){
             ToastHelper.tips(getApplicationContext(),"成功");
         }else{
@@ -86,8 +95,9 @@ public class FFmpegToolsActivity extends AppCompatActivity {
      * */
     public native int spiltYUV420(String url,int w,int h,int num);
     public native int spiltYUV444(String url,int w,int h,int num);
-    public native int YUV420Gray(String url,int w,int h,int num);
-    public native int YUV420HalfY(String url,int w,int h,int num);
+    public native int yuv420Gray(String url,int w,int h,int num);
+    public native int yuv420HalfY(String url,int w,int h,int num);
+    public native int yuv420GrayBar(int w,int h,int yMin,int yMax,int barNum,String outputUrl);
 
     static {
         System.loadLibrary("ffmpeg-info");

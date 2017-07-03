@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
@@ -84,6 +85,7 @@ public class FFmpegRtmpActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Looper.prepare();
                 ToastHelper.tips(getApplicationContext(),"准备播放中");
                 rtmp(inputUrl,etOutput.getText().toString());
                 ToastHelper.tips(getApplicationContext(),"播放结束");
